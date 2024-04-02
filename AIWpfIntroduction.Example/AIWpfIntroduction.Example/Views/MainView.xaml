@@ -23,7 +23,10 @@
         </Grid.ColumnDefinitions>
         
         <TextBlock Grid.Row="0" Grid.Column="0" Background="Brown"/>
-        <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding NowCookie, UpdateSourceTrigger=PropertyChanged, Mode=Oneway}" IsReadOnly="True" Background="Brown" FontFamily="UD Digi Kyokasho NK-B" TextAlignment="Center" Foreground="White"/>
+        <TextBox Grid.Row="1" Grid.Column="0" 
+                 Text="{Binding NowCookie, UpdateSourceTrigger=PropertyChanged, Mode=Oneway}" 
+                 IsReadOnly="True" Background="Brown" FontFamily="UD Digi Kyokasho NK-B"
+                 TextAlignment="Center" Foreground="White"/>
         <TextBlock Grid.Row="2" Grid.Column="0" Background="Brown"/>
         <Button Grid.Row="3" Grid.Column="0" Content="{Binding IncCookie, UpdateSourceTrigger=PropertyChanged, Mode=Oneway}" Command="{Binding CalcNowCommand}" FontFamily="UD Digi Kyokasho NK-B" Margin="10"/>
 
