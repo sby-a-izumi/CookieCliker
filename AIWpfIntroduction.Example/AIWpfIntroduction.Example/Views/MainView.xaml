@@ -34,10 +34,10 @@
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding NowInt, UpdateSourceTrigger=PropertyChanged, Mode=Oneway}" IsReadOnly="True" Margin="12" Height="20"/>
 
 
-        <Button Grid.Row="0" Grid.Column="2" Content="+" Command="{Binding UpgradeAdd}" Margin="10"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="*" Command="{Binding UpgradeMul}" Margin="10"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="+ /s" Command="{Binding UpgradeSec}" Margin="10"/>
-        <Button Grid.Row="3" Grid.Column="2" Content="* /s" Command="{Binding UpgradeInt}" Margin="10"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="+" Command="{Binding UpgradeAddCommand}" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="*" Command="{Binding UpgradeMulCommand}" Margin="10"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="+ /s" Command="{Binding UpgradeSecCommand}" Margin="10"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="* /s" Command="{Binding UpgradeIntCommand}" Margin="10"/>
 
         <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding CostAdd, UpdateSourceTrigger=PropertyChanged, Mode=Oneway}" IsReadOnly="True" Margin="12" Height="20"/>
         <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding CostMul, UpdateSourceTrigger=PropertyChanged, Mode=Oneway}" IsReadOnly="True" Margin="12" Height="20"/>
