@@ -270,7 +270,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <returns></returns>
         private bool CanUpgradeInt()
         {
-            return this._cookie.NowCookie < this._cookie.CostInt;
+            return this._cookie.NowCookie >= this._cookie.CostInt;
         }
         
         /// <summary>
