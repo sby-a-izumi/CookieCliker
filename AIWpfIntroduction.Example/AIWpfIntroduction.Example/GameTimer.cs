@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Timers;
-using System.Windows.Threading;
 
 namespace AIWpfIntroduction.Example
 {
@@ -33,11 +28,10 @@ namespace AIWpfIntroduction.Example
             _action();
         }
         private System.Timers.Timer _timer;
-        public System.Timers.Timer Timer
-        {
-            get { return _timer; }
-        }
 
+        /// <summary>
+        /// 一定の間隔でイベントを生成するメソッド
+        /// </summary>
         private void SetupTimer()
         {
             // 1秒ごとに実行するtimerをインスタンス化

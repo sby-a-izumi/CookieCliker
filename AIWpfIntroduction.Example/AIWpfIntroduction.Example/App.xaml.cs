@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿
 
 namespace AIWpfIntroduction.Example
 {
@@ -19,11 +13,12 @@ namespace AIWpfIntroduction.Example
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            /// 非同期に動いているかスレッドIDを確認するための処理
             System.Diagnostics.Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
             base.OnStartup(e);
 
+            /// データコンテキストの設定
             var w = new MainView();
-
             var vm = new MainViewModel();
 
             w.DataContext = vm;

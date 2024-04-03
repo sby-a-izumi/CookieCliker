@@ -12,20 +12,21 @@ namespace AIWpfIntroduction.Example.ViewModels
     using System.Security.Policy;
     using System.Windows.Media.Animation;
     /// <summary>
-    /// MainViewに対するデータコンテキスト
+    /// MainViewに対するデータコンテキストであり、本プロジェクトのViewModelにあたるクラスです。
     /// </summary>
     internal class MainViewModel : NotificationObject
     {
         /// <summary>
-        /// MainViewModelコンストラクタ
+        /// MainViewModelのコンストラクタです。
         /// </summary>
         public MainViewModel()
         {
+            // Cookieクラスのインスタンス化
             this._cookie = new Cookie();
 
             // CalcNowCommandのインスタンス化
             CalcNowCommand = new DelegateCommand(_ => CalcNow(), _ => CanCalcNow());
-
+            
             // CalcIncCommandのインスタンス化
             CalcIncCommand = new DelegateCommand(_ => CalcInc(), _ => CanCalcInc());
 
@@ -46,13 +47,16 @@ namespace AIWpfIntroduction.Example.ViewModels
         }
 
         /// <summary>
-        /// NowCookieChanged イベントハンドラ
+        /// NowCookieChangedイベントハンドラです。
+        /// アップグレード可能判定を変更しています。
         /// </summary>
         /// <param name="obj">イベント発行元</param>
         /// <param name="args">イベント引数</param>
         private void OnNowCookieChanged(object? obj, EventArgs args)
         {
+            // propertyNameを明示的にnull設定するべきじゃないらしい。調べたけどわからない。
             RaisePropertyChanged(null);
+            // それぞれのデリゲートコマンドに対して、イベントを発行するメソッドの実行をしています。
             this.UpgradeAddCommand.RaiseCanExecuteChanged();
             this.UpgradeMulCommand.RaiseCanExecuteChanged();
             this.UpgradeSecCommand.RaiseCanExecuteChanged();
@@ -144,8 +148,14 @@ namespace AIWpfIntroduction.Example.ViewModels
 
 
         #region 各コマンドの取得メソッド
+        /// 各コマンドの取得メソッドでは以下のように構成されている。
+        /// 1. executeに渡す、コマンドを実行したときに処理されるメソッド
+        /// 2. canExecuteに渡す、コマンドの実行可否判断メソッド
+        /// 3. コマンド本体の取得（ init アクセサを利用し、初期化処理のみ可能なプロパティの定義）
 
 
+        
+        #region 現在値に関するコマンド
         /// <summary>
         /// CalcNowCommandを実行したときに処理されるメソッド
         /// </summary>
@@ -167,7 +177,9 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// 現在値変更コマンド取得
         /// </summary>
         public DelegateCommand CalcNowCommand { get; init; }
+        #endregion
 
+        #region 増加値に関するコマンド
         /// <summary>
         /// CalcIncCommandを実行したときに処理されるメソッド
         /// </summary>
@@ -189,7 +201,9 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// 増加値変更コマンド取得
         /// </summary>
         public DelegateCommand CalcIncCommand { get; init; }
+        #endregion
 
+        #region 増加値の増加量に関するコマンド
         /// <summary>
         /// UpgradeAddCommandが実行されたときに処理されるメソッド
         /// </summary>
@@ -204,14 +218,16 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <returns></returns>
         private bool CanUpgradeAdd()
         {
-            return this._cookie.NowCookie >= this._cookie.CostAdd ;
+            return this._cookie.NowCookie >= this._cookie.CostAdd;
         }
 
         /// <summary>
         /// 増加量アップグレードコマンド取得
         /// </summary>
         public DelegateCommand UpgradeAddCommand { get; init; }
+        #endregion
 
+        #region 増加値の倍率に関するコマンド
         /// <summary>
         /// UpgradeMulCommandが実行されたときに処理されるメソッド
         /// </summary>
@@ -228,7 +244,9 @@ namespace AIWpfIntroduction.Example.ViewModels
         {
             return this._cookie.NowCookie >= this._cookie.CostMul;
         }
+        #endregion
 
+        #region 生産量に関するコマンド
         /// <summary>
         /// 倍率アップグレードコマンド取得
         /// </summary>
@@ -255,7 +273,9 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// 生産量アップグレードコマンド取得
         /// </summary>
         public DelegateCommand UpgradeSecCommand { get; init; }
+        #endregion
 
+        #region 利息率に関するコマンド
         /// <summary>
         /// UpgradeIntCommandが実行されたときに処理されるメソッド
         /// </summary>
@@ -277,10 +297,11 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// 生産利息アップグレードコマンド取得
         /// </summary>
         public DelegateCommand UpgradeIntCommand { get; init; }
+        #endregion
         #endregion 各コマンドの取得メソッド
 
 
-        //モデルオブジェクト
+        //モデルオブジェクトのビューモデルクラス変数
         private readonly Cookie _cookie;
     }
 }

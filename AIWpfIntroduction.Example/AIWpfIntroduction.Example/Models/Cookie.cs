@@ -9,51 +9,80 @@ namespace AIWpfIntroduction.Example.Models
     using AIWpfIntroduction.Example.ViewModels;
     using System.Security.Cryptography.X509Certificates;
 
+    /// <summary>
+    /// クッキーの計算処理、計算を記すモデルクラス
+    /// </summary>
     internal class Cookie
     {
         public Cookie()
         {
-            //this._timer = new GameTimer(() => App.Current.Dispatcher.InvokeAsync((Action)(() => AddCookiePerSecond())));
             this._timer = new GameTimer(AddCookiePerSecond);
         }
         #region Cookieクラスの変数
         /// <summary>
-        /// 現在値のプロパティ
+        /// クッキーの現在値を示すプロパティ
         /// </summary>
         public int NowCookie { get; private set; } = 0;
-        
-        //ボタンを押すごとに増加する値
+
+        /// <summary>
+        /// ボタンを押すごとに増加する値を示すプロパティ
+        /// </summary>
         public int IncCookie { get; private set; } = 1;
 
-        //適応された増加値
+        /// <summary>
+        /// 適応された増加値を示すプロパティ
+        /// </summary>
         public int NowAdd { get; private set; } = 0;
 
-        //適応された増加率
+        /// <summary>
+        /// 適応された増加率を示すプロパティ
+        /// </summary>
         public int NowMul { get; private set; } = 1;
 
-        //適応された毎秒ごとの増加値
+        /// <summary>
+        /// 適応された毎秒ごとの増加値を示すプロパティ
+        /// </summary>
         public int NowSec { get; private set; } = 1;
 
-        //適応された30秒ごとの増加率
+        /// <summary>
+        /// 適応された時間ごとの増加率を示すプロパティ
+        /// </summary>
         public int NowInt { get; private set; } = 0;
 
-        //費用
+        /// <summary>
+        /// 増加量のアップグレードコストを示すプロパティ
+        /// </summary>
         public int CostAdd { get; private set; } = 10;
 
+        /// <summary>
+        /// 倍率のアップグレードコストを示すプロパティ
+        /// </summary>
         public int CostMul { get; private set; } = 20;
 
+        /// <summary>
+        /// 生産量のアップグレードコストを示すプロパティ
+        /// </summary>
         public int CostSec { get; private set; } = 30;
 
+        /// <summary>
+        /// 利息率のアップグレードコストを示すプロパティ
+        /// </summary>
         public int CostInt { get; private set; } = 100;
         
+
         #endregion Cookieクラスの変数
 
 
         #region 各コマンド本体
+        /// <summary>
+        /// timerによって実行されるメソッド
+        /// </summary>
         private void AddCookiePerSecond()
         {
             this.NowCookie = this.NowCookie + this.NowSec + (this.NowCookie * this.NowInt / 100);
 
+            /// App.Current.Dispatcher.InvokeAsyncはWPFにおける非同期に操作を実行するためのメソッドです。
+            /// RaiseNowCookieChangedメソッドを呼び出すアクションを実行しています。
             App.Current.Dispatcher.InvokeAsync((Action)(() => RaiseNowCookieChanged()));
         }
 
@@ -127,7 +156,7 @@ namespace AIWpfIntroduction.Example.Models
         /// 生産量をアップグレード
         /// </summary>
         public void OnSec()
-        {
+        {   
             this.NowSec += 1;
             this.NowCookie -= this.CostSec;
             this.CostSec += 30;

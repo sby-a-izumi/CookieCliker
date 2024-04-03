@@ -13,8 +13,9 @@ namespace AIWpfIntroduction.Example
         /// プロパティに変更があった場合に発生するイベントです。
         /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
+
         /// <summary>
-        /// PropertyChangedイベントを発行します。
+        /// PropertyChangedイベントを発行するメソッドです。
         /// </summary>
         /// <param name="propertyName">プロパティ値に変更があったプロパティ名を指定します。</param>
         protected void RaisePropertyChanged([CallerMemberName]string? propertyName = null)
@@ -24,10 +25,10 @@ namespace AIWpfIntroduction.Example
         }
 
         /// <summary>
-        /// プロパティを設定するためのメソッドです。
+        /// プロパティを設定するためのメソッドです。プロパティ値変更に使用されます。
         /// </summary>
         /// <typeparam name="T">プロパティの型を表すジェネリック型パラメータです。（型によって限定しないため）</typeparam>
-        /// <param name="target">プロパティの現在の値を参照するための参照型パラメータです。</param>
+        /// <param name="target">プロパティの現在の値を参照するためのパラメータです。</param>
         /// <param name="value">新しい値を指定するためのパラメータです。</param>
         /// <param name="propertyName">呼び出し元のプロパティ名を表します。</param>
         /// <returns>プロパティ値に変更があったときに true を返します。</returns>
