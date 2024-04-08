@@ -6,7 +6,7 @@ namespace AIWpfIntroduction.Example
     /// <summary>
     /// プロパティ値に変更があったタイミングでPropertyChangedイベントを発行して、変更を通知ためのクラスです。
     /// </summary>
-    internal abstract class NotificationObject : INotifyPropertyChanged
+    public abstract class NotificationObject : INotifyPropertyChanged
     {
         #region InotifyPropertyChanged の実装
         /// <summary>

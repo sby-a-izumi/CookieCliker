@@ -13,10 +13,12 @@ namespace AIWpfIntroduction.Example
         public GameTimer(Action action)
         {
             SetupTimer();
+            //create time　によってインスタンス化した後　返り値
             _action = action;
         }
 
-        private Action _action;
+        private readonly Action _action;
+
         /// <summary>
         /// Elapsedイベントが発行された際に実行されるイベントハンドラ
         /// </summary>

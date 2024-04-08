@@ -6,7 +6,7 @@ namespace AIWpfIntroduction.Example
     /// <summary>
     /// Viewの処理をViewModelへ伝えるためにICommandインターフェースを利用する必要があるので、デリゲートを用いて処理の委譲をするクラスです。
     /// </summary>
-    internal class DelegateCommand : ICommand
+    public class DelegateCommand : ICommand
     {   
         /// <summary>
         /// コマンド実行時の処理内容を保持

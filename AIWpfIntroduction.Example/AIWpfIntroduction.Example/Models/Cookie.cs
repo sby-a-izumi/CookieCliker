@@ -12,7 +12,7 @@ namespace AIWpfIntroduction.Example.Models
     /// <summary>
     /// クッキーの計算処理、計算を記すモデルクラス
     /// </summary>
-    internal class Cookie
+    public class Cookie : ICookie
     {
         public Cookie()
         {
@@ -115,7 +115,6 @@ namespace AIWpfIntroduction.Example.Models
         /// </summary>
         public void UpdateIncCookie()
         {
-            // jouken 
             this.IncCookie = (1 + this.NowAdd) * this.NowMul;
         }
 
