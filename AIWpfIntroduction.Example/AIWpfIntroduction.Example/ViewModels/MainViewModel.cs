@@ -28,7 +28,8 @@ namespace AIWpfIntroduction.Example.ViewModels
             CalcIncCommand = new DelegateCommand(_ => CalcInc(), _ => CanCalcInc());
             UpgradeAddCommand = new DelegateCommand(_ => UpgradeAdd(), _ => CanUpgradeAdd());
             UpgradeMulCommand = new DelegateCommand(_ => UpgradeMul(), _ => CanUpgradeMul());
-            UpgradeSecCommand = new DelegateCommand(_ => UpgradeSec(), _ => CanUpgradeSec());));
+            UpgradeSecCommand = new DelegateCommand(_ => UpgradeSec(), _ => CanUpgradeSec());
+            UpgradeIntCommand = new DelegateCommand(_ => UpgradeInt(), _ => CanUpgradeInt());
 
             // NowCookieChangedイベントにOnNowCookieChangedイベントハンドラを登録しています。
             this._cookie.NowCookieChanged += OnNowCookieChanged;
