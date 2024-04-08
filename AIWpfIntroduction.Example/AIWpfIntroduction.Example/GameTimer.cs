@@ -10,11 +10,12 @@ namespace AIWpfIntroduction.Example
         /// 新しいインスタンスを生成します。
         /// </summary>
         /// <param name="action">引数なしのデリゲートを指定</param>
-        public GameTimer(Action action)
+        public GameTimer(Action action, int Timer_time)
         {
             SetupTimer();
             //create time　によってインスタンス化した後　返り値
             _action = action;
+            _timer_time = Timer_time;
         }
 
         private readonly Action _action;
@@ -30,7 +31,8 @@ namespace AIWpfIntroduction.Example
             _action();
         }
 
-        private readonly System.Timers.Timer _timer;
+        private System.Timers.Timer _timer;
+        private int _timer_time;
 
         /// <summary>
         /// 一定の間隔でイベントを生成するメソッド
@@ -40,7 +42,7 @@ namespace AIWpfIntroduction.Example
         {
             // 1秒ごとに実行するtimerをインスタンス化
             // 時間を外部から
-            _timer = new System.Timers.Timer(1000);
+            _timer = new System.Timers.Timer(_timer_time);
 
             // Elapsedイベントを登録
             _timer.Elapsed +=OnElapsed;

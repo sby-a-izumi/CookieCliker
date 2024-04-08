@@ -16,7 +16,9 @@ namespace AIWpfIntroduction.Example.Models
     {
         public Cookie()
         {
-            this._timer = new GameTimer(AddCookiePerSecond);
+            /// 実行するタイマーの時間を指定(ms)
+            int Timer_time = 1000;
+            this._timer = new GameTimer(AddCookiePerSecond, Timer_time);
         }
         #region Cookieクラスの変数
         /// <summary>
