@@ -1,11 +1,11 @@
-﻿
+﻿using System.Threading;
+using System.Windows;
+using AIWpfIntroduction.Example.Models;
+using AIWpfIntroduction.Example.ViewModels;
+using AIWpfIntroduction.Example.Views;
 
 namespace AIWpfIntroduction.Example
 {
-    using System.Threading;
-    using System.Windows;
-    using AIWpfIntroduction.Example.ViewModels;
-    using AIWpfIntroduction.Example.Views;
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -19,7 +19,7 @@ namespace AIWpfIntroduction.Example
 
             /// データコンテキストの設定
             var w = new MainView();
-            var vm = new MainViewModel();
+            var vm = new MainViewModel(new Cookie());
 
             w.DataContext = vm;
 
