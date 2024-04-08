@@ -14,14 +14,14 @@ namespace AIWpfIntroduction.Example.ViewModels
     /// <summary>
     /// MainViewに対するデータコンテキストであり、本プロジェクトのViewModelにあたるクラスです。
     /// </summary>
-    internal class MainViewModel : NotificationObject
+    public class MainViewModel : NotificationObject
     {
         /// <summary>
         /// MainViewModelのコンストラクタです。
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(ICookie _icookie)
         {
-            this._cookie = new Cookie();
+            _cookie = new Cookie();
 
             // 各コマンドに対して、実行メソッドと実行可能条件メソッドを明示したデリゲートをインスタンス化
             CalcNowCommand = new DelegateCommand(_ => CalcNow(), _ => CanCalcNow());
@@ -32,7 +32,7 @@ namespace AIWpfIntroduction.Example.ViewModels
             UpgradeIntCommand = new DelegateCommand(_ => UpgradeInt(), _ => CanUpgradeInt());
 
             // NowCookieChangedイベントにOnNowCookieChangedイベントハンドラを登録しています。
-            this._cookie.NowCookieChanged += OnNowCookieChanged;
+            _cookie.NowCookieChanged += OnNowCookieChanged;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int NowCookie
         {
-            get { return this._cookie.NowCookie; }
+            get { return _cookie.NowCookie; }
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int IncCookie
         {
-            get { return this._cookie.IncCookie; }
+            get { return _cookie.IncCookie; }
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int NowAdd
         {
-            get { return this._cookie.NowAdd; }
+            get { return _cookie.NowAdd; }
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int NowMul
         {
-            get { return this._cookie.NowMul; }
+            get { return _cookie.NowMul; }
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int NowSec
         {
-            get { return this._cookie.NowSec; }
+            get { return _cookie.NowSec; }
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int NowInt
         {
-            get { return this._cookie.NowInt; }
+            get { return _cookie.NowInt; }
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int CostAdd
         {
-            get { return this._cookie.CostAdd; }
+            get { return _cookie.CostAdd; }
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int CostMul
         {
-            get { return this._cookie.CostMul; }
+            get { return _cookie.CostMul; }
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int CostSec
         {
-            get { return this._cookie.CostSec; }
+            get { return _cookie.CostSec; }
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public int CostInt
         {
-            get { return this._cookie.CostInt; }
+            get { return _cookie.CostInt; }
         }
         #endregion 各プロパティの取得または設定
 
@@ -150,7 +150,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         private void CalcNow()
         {
-            this._cookie.UpdateNowCookie();
+            _cookie.UpdateNowCookie();
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         private void CalcInc()
         {
-            this._cookie.UpdateIncCookie();
+            _cookie.UpdateIncCookie();
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         private void UpgradeAdd()
         {
-            this._cookie.OnAdd();
+            _cookie.OnAdd();
         }
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <returns></returns>
         private bool CanUpgradeAdd()
         {
-            return this._cookie.NowCookie >= this._cookie.CostAdd;
+            return _cookie.NowCookie >= _cookie.CostAdd;
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         private void UpgradeMul()
         {
-            this._cookie.OnMul();
+            _cookie.OnMul();
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <returns></returns>
         private bool CanUpgradeMul()
         {
-            return this._cookie.NowCookie >= this._cookie.CostMul;
+            return _cookie.NowCookie >= _cookie.CostMul;
         }
         #endregion
 
@@ -246,7 +246,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         private void UpgradeSec()
         {
-            this._cookie.OnSec();
+            _cookie.OnSec();
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <returns></returns>
         private bool CanUpgradeSec()
         {
-            return this._cookie.NowCookie >= this._cookie.CostSec;
+            return _cookie.NowCookie >= _cookie.CostSec;
         }
         
         /// <summary>
@@ -270,7 +270,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         private void UpgradeInt()
         {
-            this._cookie.OnInt();
+            _cookie.OnInt();
         }
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <returns></returns>
         private bool CanUpgradeInt()
         {
-            return this._cookie.NowCookie >= this._cookie.CostInt;
+            return _cookie.NowCookie >= _cookie.CostInt;
         }
         
         /// <summary>

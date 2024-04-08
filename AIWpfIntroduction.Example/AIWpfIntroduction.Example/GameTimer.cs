@@ -12,10 +12,11 @@ namespace AIWpfIntroduction.Example
         /// <param name="action">引数なしのデリゲートを指定</param>
         public GameTimer(Action action, int Timer_time)
         {
+            _timer_time = Timer_time;
             SetupTimer();
+
             //create time　によってインスタンス化した後　返り値
             _action = action;
-            _timer_time = Timer_time;
         }
 
         private readonly Action _action;
