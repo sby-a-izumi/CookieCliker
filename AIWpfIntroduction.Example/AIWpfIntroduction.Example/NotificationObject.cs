@@ -24,6 +24,12 @@ namespace AIWpfIntroduction.Example
             if (h != null) h(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        protected void RaiseAllPropertyChanged()
+        {
+            var h = this.PropertyChanged;
+            if (h != null) h(this, new PropertyChangedEventArgs(null));
+        }
+
         /// <summary>
         /// プロパティを設定するためのメソッドです。プロパティ値変更に使用されます。
         /// </summary>

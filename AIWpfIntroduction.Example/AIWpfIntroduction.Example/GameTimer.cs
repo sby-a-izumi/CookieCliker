@@ -27,24 +27,24 @@ namespace AIWpfIntroduction.Example
             System.Diagnostics.Debug.WriteLine(Thread.CurrentThread.ManagedThreadId);
             _action();
         }
-        private System.Timers.Timer _timer;
+
+        private readonly System.Timers.Timer _timer;
 
         /// <summary>
         /// 一定の間隔でイベントを生成するメソッド
+        /// 1000miri秒ごとに動くタイマを登録
         /// </summary>
         private void SetupTimer()
         {
             // 1秒ごとに実行するtimerをインスタンス化
+            // 時間を外部から
             _timer = new System.Timers.Timer(1000);
 
-            // ElapsedイベントにOnElapsedを購読
+            // Elapsedイベントを登録
             _timer.Elapsed +=OnElapsed;
 
             // 設定されたTimer設定でスタート
             _timer.Start();
-
-
-        
         }
     }
 }

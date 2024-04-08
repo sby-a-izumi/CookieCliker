@@ -104,7 +104,7 @@ namespace AIWpfIntroduction.Example.Models
         /// <summary>
         /// 現在値を増加値分だけ加算する
         /// </summary>
-        public void UpdateNowCookie()
+        public void UpdateNowCookie()//
         {
             this.NowCookie += this.IncCookie;
             RaiseNowCookieChanged();
@@ -115,6 +115,7 @@ namespace AIWpfIntroduction.Example.Models
         /// </summary>
         public void UpdateIncCookie()
         {
+            // jouken 
             this.IncCookie = (1 + this.NowAdd) * this.NowMul;
         }
 

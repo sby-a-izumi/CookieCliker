@@ -21,28 +21,16 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            // Cookieクラスのインスタンス化
             this._cookie = new Cookie();
 
-            // CalcNowCommandのインスタンス化
+            // 各コマンドに対して、実行メソッドと実行可能条件メソッドを明示したデリゲートをインスタンス化
             CalcNowCommand = new DelegateCommand(_ => CalcNow(), _ => CanCalcNow());
-            
-            // CalcIncCommandのインスタンス化
             CalcIncCommand = new DelegateCommand(_ => CalcInc(), _ => CanCalcInc());
-
-            // UpgradeAddCommandのインスタンス化
             UpgradeAddCommand = new DelegateCommand(_ => UpgradeAdd(), _ => CanUpgradeAdd());
-
-            // UpgradeMulCommandのインスタンス化
             UpgradeMulCommand = new DelegateCommand(_ => UpgradeMul(), _ => CanUpgradeMul());
+            UpgradeSecCommand = new DelegateCommand(_ => UpgradeSec(), _ => CanUpgradeSec());));
 
-            // UpgradeSecCommandのインスタンス化
-            UpgradeSecCommand = new DelegateCommand(_ => UpgradeSec(), _ => CanUpgradeSec());
-
-            // UpgradeMulCommandのインスタンス化
-            UpgradeIntCommand = new DelegateCommand(_ => UpgradeInt(), _ => CanUpgradeInt());
-
-            // NowCookieChangedイベントにOnNowCookieChangedイベントハンドラを購読しています。
+            // NowCookieChangedイベントにOnNowCookieChangedイベントハンドラを登録しています。
             this._cookie.NowCookieChanged += OnNowCookieChanged;
         }
 
@@ -54,8 +42,8 @@ namespace AIWpfIntroduction.Example.ViewModels
         /// <param name="args">イベント引数</param>
         private void OnNowCookieChanged(object? obj, EventArgs args)
         {
-            // propertyNameを明示的にnull設定するべきじゃないらしい。調べたけどわからない。
-            RaisePropertyChanged(null);
+            // すべてのプロパティを更新するメソッドです。
+            RaiseAllPropertyChanged();
             // それぞれのデリゲートコマンドに対して、イベントを発行するメソッドの実行をしています。
             this.UpgradeAddCommand.RaiseCanExecuteChanged();
             this.UpgradeMulCommand.RaiseCanExecuteChanged();
