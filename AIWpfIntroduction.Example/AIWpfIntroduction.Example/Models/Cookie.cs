@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace AIWpfIntroduction.Example.Models
 {
     using AIWpfIntroduction.Example.ViewModels;
     using System.Security.Cryptography.X509Certificates;
+
 
     /// <summary>
     /// クッキーの計算処理、計算を記すモデルクラス
@@ -24,13 +27,19 @@ namespace AIWpfIntroduction.Example.Models
         /// <summary>
         /// クッキーの現在値を示すプロパティ
         /// </summary>
+#if DEBUG
+        public int NowCookie { get; set; } = 0;
+#else
         public int NowCookie { get; private set; } = 0;
-
+#endif
         /// <summary>
         /// ボタンを押すごとに増加する値を示すプロパティ
         /// </summary>
-        public int IncCookie { get; private set; } = 1;
-
+#if DEBUG
+        public int IncCookie { get; set; } = 1;
+#else
+    public int IncCookie { get; private set; } = 1;
+#endif
         /// <summary>
         /// 適応された増加値を示すプロパティ
         /// </summary>
@@ -72,7 +81,7 @@ namespace AIWpfIntroduction.Example.Models
         public int CostInt { get; private set; } = 100;
         
 
-        #endregion Cookieクラスの変数
+#endregion Cookieクラスの変数
 
 
         #region 各コマンド本体
@@ -106,7 +115,7 @@ namespace AIWpfIntroduction.Example.Models
         /// <summary>
         /// 現在値を増加値分だけ加算する
         /// </summary>
-        public void UpdateNowCookie()//
+        public void UpdateNowCookie()
         {
             this.NowCookie += this.IncCookie;
             RaiseNowCookieChanged();
