@@ -27,59 +27,93 @@ namespace AIWpfIntroduction.Example.Models
         /// <summary>
         /// クッキーの現在値を示すプロパティ
         /// </summary>
-#if DEBUG
-        public int NowCookie { get; set; } = 0;
-#else
-        public int NowCookie { get; private set; } = 0;
-#endif
+        #if DEBUG
+            public int NowCookie { get; set; } = 0;
+        #else
+            public int NowCookie { get; private set; } = 0;
+        #endif
+
         /// <summary>
         /// ボタンを押すごとに増加する値を示すプロパティ
         /// </summary>
-#if DEBUG
-        public int IncCookie { get; set; } = 1;
-#else
-    public int IncCookie { get; private set; } = 1;
-#endif
+        #if DEBUG
+            public int IncCookie { get; set; } = 1;
+        #else
+            public int IncCookie { get; private set; } = 1;
+        #endif
+
         /// <summary>
         /// 適応された増加値を示すプロパティ
         /// </summary>
-        public int NowAdd { get; private set; } = 0;
+        #if DEBUG
+            public int NowAdd { get; set; } = 0;
+        #else
+            public int NowAdd { get; private set; } = 0;
+        #endif
 
         /// <summary>
         /// 適応された増加率を示すプロパティ
         /// </summary>
-        public int NowMul { get; private set; } = 1;
+        #if DEBUG
+            public int NowMul { get; set; } = 1;
+        #else
+            public int NowMul { get; private set; } = 1;
+        #endif
 
         /// <summary>
         /// 適応された毎秒ごとの増加値を示すプロパティ
         /// </summary>
-        public int NowSec { get; private set; } = 1;
+        #if DEBUG
+            public int NowSec { get; set; } = 1;
+        #else
+            public int NowSec { get; private set; } = 1;
+        #endif
 
         /// <summary>
         /// 適応された時間ごとの増加率を示すプロパティ
         /// </summary>
-        public int NowInt { get; private set; } = 0;
+        #if DEBUG
+            public int NowInt { get; set; } = 0;
+        #else
+            public int NowInt { get; private set; } = 0;
+        #endif
 
         /// <summary>
         /// 増加量のアップグレードコストを示すプロパティ
         /// </summary>
-        public int CostAdd { get; private set; } = 10;
+        #if DEBUG
+            public int CostAdd { get; set; } = 10;
+        #else
+            public int CostAdd { get; private set; } = 10;
+        #endif
 
         /// <summary>
         /// 倍率のアップグレードコストを示すプロパティ
         /// </summary>
-        public int CostMul { get; private set; } = 20;
+        #if DEBUG
+            public int CostMul { get; set; } = 20;
+        #else
+            public int CostMul { get; private set; } = 20;
+        #endif
 
         /// <summary>
         /// 生産量のアップグレードコストを示すプロパティ
         /// </summary>
-        public int CostSec { get; private set; } = 30;
+        #if DEBUG
+            public int CostSec { get; set; } = 30;
+        #else
+            public int CostSec { get; private set; } = 30;
+        #endif
 
         /// <summary>
         /// 利息率のアップグレードコストを示すプロパティ
         /// </summary>
-        public int CostInt { get; private set; } = 100;
-        
+        #if DEBUG
+            public int CostInt { get; set; } = 100;
+        #else
+            public int CostInt { get; private set; } = 100;
+        #endif
+
 
 #endregion Cookieクラスの変数
 
