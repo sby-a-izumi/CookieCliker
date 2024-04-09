@@ -114,7 +114,6 @@ namespace AIWpfIntroduction.Example.Models
             public int CostInt { get; private set; } = 100;
         #endif
 
-
 #endregion Cookieクラスの変数
 
 
