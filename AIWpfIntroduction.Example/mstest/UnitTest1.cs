@@ -118,5 +118,59 @@ namespace mstest
             cookie.OnMul();
             Assert.IsTrue((cookie.CostMul == 200) && (cookie.NowMul == 4) && (cookie.NowCookie == 30));
         }
+
+        /// <summary>
+        /// OnSec -> RaiseNowCookieChangedメソッドのテスト
+        /// </summary>
+        [TestMethod]
+        public void T007_OnSecでイベントが発生することを確認()
+        {
+            var cookie = new Cookie();
+            var isCalled = false;
+            cookie.NowCookieChanged += (s, e) => isCalled = true;
+            cookie.OnSec();
+            Assert.IsTrue(isCalled);
+        }
+
+        /// <summary>
+        /// OnSec -> UpdateIncCookieメソッドのテスト
+        /// </summary>
+        [TestMethod]
+        public void T008_OnSecとUpdateIncCookieとの間で値が正しく送れているか確認()
+        {
+            var cookie = new Cookie();
+            cookie.NowSec = 4;
+            cookie.NowCookie = 100;
+            cookie.CostSec = 20;
+            cookie.OnSec();
+            Assert.IsTrue((cookie.CostSec == 50) && (cookie.NowSec == 5) && (cookie.NowCookie == 80));
+        }
+
+        /// <summary>
+        /// OnInt -> RaiseNowCookieChangedメソッドのテスト
+        /// </summary>
+        [TestMethod]
+        public void T009_OnIntでイベントが発生することを確認()
+        {
+            var cookie = new Cookie();
+            var isCalled = false;
+            cookie.NowCookieChanged += (s, e) => isCalled = true;
+            cookie.OnInt();
+            Assert.IsTrue(isCalled);
+        }
+
+        /// <summary>
+        /// OnInt -> UpdateIncCookieメソッドのテスト
+        /// </summary>
+        [TestMethod]
+        public void T010_OnIntとUpdateIncCookieとの間で値が正しく送れているか確認()
+        {
+            var cookie = new Cookie();
+            cookie.NowInt = 6;
+            cookie.NowCookie = 200;
+            cookie.CostInt = 180;
+            cookie.OnInt();
+            Assert.IsTrue((cookie.CostInt == 230) && (cookie.NowInt == 7) && (cookie.NowCookie == 20));
+        }
     }
 }
