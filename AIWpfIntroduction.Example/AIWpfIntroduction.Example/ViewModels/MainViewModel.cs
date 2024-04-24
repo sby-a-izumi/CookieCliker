@@ -16,12 +16,15 @@ namespace AIWpfIntroduction.Example.ViewModels
     /// </summary>
     public class MainViewModel : NotificationObject
     {
+
+        private ICookie _cookie;
         /// <summary>
         /// MainViewModelのコンストラクタです。
         /// </summary>
-        public MainViewModel(ICookie _icookie)
+        public MainViewModel(ICookie cookie)
         {
-            _cookie = new Cookie();
+            _cookie = cookie;
+
 
             // 各コマンドに対して、実行メソッドと実行可能条件メソッドを明示したデリゲートをインスタンス化
             CalcNowCommand = new DelegateCommand(_ => CalcNow(), _ => CanCalcNow());
@@ -291,7 +294,7 @@ namespace AIWpfIntroduction.Example.ViewModels
 
 
         //モデルオブジェクトのビューモデルクラス変数
-        private readonly Cookie _cookie;
+        //private readonly Cookie _cookie;
     }
 }
 
