@@ -1,19 +1,14 @@
 using AIWpfIntroduction.Example.Models;
 using AIWpfIntroduction.Example.ViewModels;
+using AIWpfIntroduction.Example;
 using Moq;
+using System.ComponentModel;
 
 namespace mstest
 {
   [TestClass]
   public class UnitTest1
   {
-    /// <summary>
-    /// Timerのテスト
-    /// </summary>
-    
-
-
-
     #region Cookieクラスのテスト
 
     /// <summary>
@@ -174,20 +169,20 @@ namespace mstest
     public void T011_CalcNowCommandがModelに適切に作用するか確認()
     {
       // Cookie のインスタンスを作成
-      Cookie _cookie = new Cookie();
+      Cookie cookie = new Cookie();
 
       // MainViewModel のインスタンスを作成
-      MainViewModel _mainViewModel = new MainViewModel(_cookie);
+      MainViewModel _mainViewModel = new MainViewModel(cookie);
 
       // Cookie のインスタンスが持つプロパティの値を変更
-      _cookie.NowCookie = 0;
-      _cookie.IncCookie = 1;
+      cookie.NowCookie = 0;
+      cookie.IncCookie = 1;
 
       // テスト
       _mainViewModel.CalcNowCommand.Execute(null); 
 
       // 検査
-      Assert.AreEqual(_cookie.NowCookie, 1);
+      Assert.AreEqual(cookie.NowCookie, 1);
     }
 
     /// <summary>
@@ -216,26 +211,26 @@ namespace mstest
     public void T012_CalcIncCommandがModelに適切に作用するか確認()
     {
       // Cookie のインスタンスを作成
-      Cookie _cookie = new Cookie();
+      Cookie cookie = new Cookie();
 
       // MainViewModel のインスタンスを作成
-      MainViewModel _mainViewModel = new MainViewModel(_cookie);
+      MainViewModel _mainViewModel = new MainViewModel(cookie);
 
       // Cookie のインスタンスが持つプロパティの値を変更
-      _cookie.IncCookie = 2;
-      _cookie.NowAdd = 3;
-      _cookie.NowMul = 4;
+      cookie.IncCookie = 2;
+      cookie.NowAdd = 3;
+      cookie.NowMul = 4;
 
       // テスト
       _mainViewModel.CalcIncCommand.Execute(null);
 
       // 検査
-      Assert.AreEqual(_cookie.IncCookie, 16);
+      Assert.AreEqual(cookie.IncCookie, 16);
     }
 
     /// <summary>
     /// Mockを利用したCalcIncCommandのテスト
-    /// 
+    /// </summary>
     [TestMethod]
     public void T012M_CalcIncCommandがModelに適切に作用するか確認()
     {
@@ -253,7 +248,112 @@ namespace mstest
       mock.Verify(x => x.UpdateIncCookie(), Times.Once);
     }
 
+    /// <summary>
+    /// Mockを利用したUpgradeAddCommandのテスト
+    /// </summary>
+    [TestMethod]
+    public void T013M_UpgradeAddCommandがModelに適切に作用するか確認()
+    {
+      // Cookie のモックを作成
+      var mock = new Mock<ICookie>();
+      var mockObj = mock.Object;
+
+      // MainViewModelクラスにMockオブジェクトを渡す
+      var target = new MainViewModel(mockObj);
+
+      // テスト
+      target.UpgradeAddCommand.Execute(null);
+
+      // 検査
+      mock.Verify(x => x.OnAdd(), Times.Once);
+    }
+
+    /// <summary>
+    /// Mockを利用したUpgradeMulCommandのテスト
+    /// </summary>
+    [TestMethod]
+    public void T014M_UpgradeMulCommandがModelに適切に作用するか確認()
+    {
+      // Cookie のモックを作成
+      var mock = new Mock<ICookie>();
+      var mockObj = mock.Object;
+
+      // MainViewModelクラスにMockオブジェクトを渡す
+      var target = new MainViewModel(mockObj);
+
+      // テスト
+      target.UpgradeMulCommand.Execute(null);
+
+      // 検査
+      mock.Verify(x => x.OnMul(), Times.Once);
+    }
+
+    /// <summary>
+    /// Mockを利用したUpgradeSecCommandのテスト
+    /// 
+    [TestMethod]
+    public void T015M_UpgradeSecCommandがModelに適切に作用するか確認()
+    {
+      // Cookie のモックを作成
+      var mock = new Mock<ICookie>();
+      var mockObj = mock.Object;
+
+      // MainViewModelクラスにMockオブジェクトを渡す
+      var target = new MainViewModel(mockObj);
+
+      // テスト
+      target.UpgradeSecCommand.Execute(null);
+
+      // 検査
+      mock.Verify(x => x.OnSec(), Times.Once);
+    }
+
+    /// <summary>
+    /// Mockを利用したUpgradeIntCommandのテスト
+    /// 
+    [TestMethod]
+    public void T016M_UpgradeIntCommandがModelに適切に作用するか確認()
+    {
+      // Cookie のモックを作成
+      var mock = new Mock<ICookie>();
+      var mockObj = mock.Object;
+
+      // MainViewModelクラスにMockオブジェクトを渡す
+      var target = new MainViewModel(mockObj);
+
+      // テスト
+      target.UpgradeIntCommand.Execute(null);
+
+      // 検査
+      mock.Verify(x => x.OnInt(), Times.Once);
+    }
 
     #endregion MainViewModelクラスのテスト
+    #region GameTimerクラスのテスト
+
+    [TestMethod, Timeout(5000)]
+    public async Task T017M_GameTimerが正しく動作するか確認()
+    {
+      // Cookie のモックを作成
+      var mock = new Mock<ICookie>();
+      var mockObj = mock.Object;
+
+      int interval = 1000;
+      // GameTimer のインスタンスを作成
+      GameTimer _gameTimer = new GameTimer(mockObj.AddCookiePerSecond,interval);
+
+      // テスト
+      _gameTimer.SetupTimer();
+
+      // GameTimerのインターバル以上の時間だけテストの実行を停止します。
+      await Task.Delay(TimeSpan.FromSeconds(2));　
+
+      // 検査
+      mock.Verify(x => x.AddCookiePerSecond(), Times.AtLeastOnce());
+    }
+
+      
+    
+    #endregion GameTimerクラスのテスト
   }
 }

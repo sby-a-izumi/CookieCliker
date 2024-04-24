@@ -121,7 +121,7 @@ namespace AIWpfIntroduction.Example.Models
         /// <summary>
         /// timerによって実行されるメソッド
         /// </summary>
-        private void AddCookiePerSecond()
+        public void AddCookiePerSecond()
         {
             this.NowCookie = this.NowCookie + this.NowSec + (this.NowCookie * this.NowInt / 100);
 
@@ -221,7 +221,7 @@ namespace AIWpfIntroduction.Example.Models
         }
     #endregion 各コマンド本体
 
-        private GameTimer _timer;
+        private GameTimer? _timer;
 
     }
 }

@@ -4,7 +4,7 @@ using System.Timers;
 
 namespace AIWpfIntroduction.Example
 {
-    internal class GameTimer
+    public class GameTimer // 単体テストのためにpublicに変更
     {
         /// <summary>
         /// 新しいインスタンスを生成します。
@@ -39,7 +39,7 @@ namespace AIWpfIntroduction.Example
         /// 一定の間隔でイベントを生成するメソッド
         /// 1000miri秒ごとに動くタイマを登録
         /// </summary>
-        private void SetupTimer()
+        public void SetupTimer()
         {
             // 1秒ごとに実行するtimerをインスタンス化
             // 時間を外部から

@@ -24,4 +24,6 @@ public interface ICookie
   void OnSec();
   void OnInt();
 
+  void AddCookiePerSecond();
+
 }
